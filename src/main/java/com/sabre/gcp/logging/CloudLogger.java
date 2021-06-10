@@ -16,7 +16,7 @@ public final class CloudLogger implements Serializable {
     private static final String DEFAULT_LOG_NAME = "my.log";
     private static String APP_NAME = "gae_app";
 
-    public void setAppName(String appName) {
+    public static void setAppName(String appName) {
         APP_NAME = appName;
     }
 
