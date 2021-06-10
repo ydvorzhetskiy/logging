@@ -14,7 +14,11 @@ import static java.util.Collections.singletonMap;
 public final class CloudLogger implements Serializable {
 
     private static final String DEFAULT_LOG_NAME = "my.log";
-    private static final String GAE_APP = "gae_app";
+    private static String APP_NAME = "gae_app";
+
+    public void setAppName(String appName) {
+        APP_NAME = appName;
+    }
 
     public static CloudLogger getLogger(Class<?> clazz, KV... labels) {
         return new CloudLogger(DEFAULT_LOG_NAME, clazz.getName(), labels);
@@ -47,7 +51,7 @@ public final class CloudLogger implements Serializable {
         logging.write(
             singletonList(builder.build()),
             Logging.WriteOption.logName(logName),
-            Logging.WriteOption.resource(MonitoredResource.newBuilder(GAE_APP).build()));
+            Logging.WriteOption.resource(MonitoredResource.newBuilder(APP_NAME).build()));
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
